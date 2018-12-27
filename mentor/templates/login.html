@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block content %}
+    <a href="/login/unti/?next={{ next }}">
+        <button class="btn btn-primary">{% trans 'Войти' %}</button>
+    </a>
+{% endblock %}
