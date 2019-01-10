@@ -1,6 +1,7 @@
 from django.conf import settings
 from social_core.backends.oauth import BaseOAuth2
 from social_core.utils import handle_http_errors
+from mentor.models import Role
 
 
 def update_user(strategy, details, user=None, backend=None, *args, **kwargs):
@@ -13,6 +14,9 @@ def update_user(strategy, details, user=None, backend=None, *args, **kwargs):
         user.second_name = data.get('secondname', '') or ''
         user.unti_id = data.get('unti_id')
         user.leader_id = data.get('leader_id') or ''
+        tags = data.get('tags') or []
+        roles = list(filter(None, (Role.get_role_for_tag(tag) for tag in tags)))
+        user.role.set(roles)
         user.save()
 
 

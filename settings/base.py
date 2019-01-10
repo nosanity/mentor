@@ -184,3 +184,5 @@ DATABASES = {
         'PORT': DB_PORT,
     }
 }
+
+WAGTAIL_PASSWORD_RESET_ENABLED = False
