@@ -1,8 +1,17 @@
 language: python
 services:
   - postgresql
+env:
+  - DB_HOST=127.0.0.1
+  - DB_NAME=db
+  - DB_PASSWORD=password
+  - DB_PORT=5432
+  - DB_USER=user
 python:
   - "3.5"
+before_script:
+  - psql -U postgres -c 'CREATE USER user WITH PASSWORD "password";'
+  - psql -U postgres -c 'ALTER USER user CREATEDB;'
 install:
   - pip install -r requirements.txt
 script:
