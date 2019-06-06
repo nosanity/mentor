@@ -10,8 +10,8 @@ env:
 python:
   - "3.5"
 before_script:
-  - psql -U postgres -c 'CREATE USER user WITH PASSWORD "password";'
-  - psql -U postgres -c 'ALTER USER user CREATEDB;'
+  - psql -U postgres -c 'CREATE USER "user" WITH PASSWORD "password";'
+  - psql -U postgres -c 'ALTER USER "user" CREATEDB;'
 install:
   - pip install -r requirements.txt
 script:
